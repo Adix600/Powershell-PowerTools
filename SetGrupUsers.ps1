@@ -89,5 +89,5 @@ foreach($dluser in $dlusers){
 
 Write-Host -f Magenta ("Przetwarzanie zakończone!");
 
-$deletelist | Out-GridView -OutputMode Multiple -Title "Użytkowicy do usunięcia z listy dystrybucyjnej" | foreach{Remove-DistributionGroupMember -Identity $DL -Member $_;Write-Host -f Green ("Usunięto:",$_)}
-$addlist | Out-GridView -OutputMode Multiple -Title "Użytkowicy do dodania do listy dystrybucyjnej" | foreach{Add-DistributionGroupMember -Identity $DL -Member $_; Write-Host -f Green ("Dodano:",$_)}
+$deletelist | Out-GridView -OutputMode Multiple -Title "Użytkowicy do usunięcia z listy dystrybucyjnej" | Remove-DistributionGroupMember -Identity $DL -Member $_; Write-Host -f Green ("Usunięto:",$_)
+$addlist | Out-GridView -OutputMode Multiple -Title "Użytkowicy do dodania do listy dystrybucyjnej" | Add-DistributionGroupMember -Identity $DL -Member $_; Write-Host -f Green ("Dodano:",$_)
